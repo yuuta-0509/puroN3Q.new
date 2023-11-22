@@ -1,0 +1,356 @@
+/* @charset "utf-8";
+
+/*========= ナビゲーションドロップダウンのためのCSS ===============*/
+
+/*==ナビゲーション全体の設定*/
+nav{
+  background:#333;
+  color:#fff;
+  text-align: center;
+}
+/*ナビゲーションを横並びに*/
+nav ul{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+/*2階層目以降は横並びにしない*/
+nav ul ul{
+  display: block;
+}
+
+@media screen and (max-width:600px){
+    .main_title{
+        font-size: 20px;
+    }
+    
+}
+
+/*下の階層のulや矢印の基点にするためliにrelativeを指定*/
+nav ul li{
+  position: relative;
+}
+
+/*ナビゲーションのリンク設定*/
+nav ul li a{
+  display: block;
+  text-decoration: none;
+  color: #999;
+  padding:20px 35px;
+  transition:all .3s;
+}
+
+nav ul li li a{
+  padding:10px 35px;
+}
+
+nav ul li a:hover{
+  color:#fff; 
+}
+
+/*==矢印の設定*/
+
+/*2階層目を持つliの矢印の設定*/
+nav ul li.has-child::before{
+  content:'';
+  position: absolute;
+  left:15px;
+  top:25px;
+  width:6px;
+  height:6px;
+  border-top: 2px solid #999;
+    border-right:2px solid #999;
+    transform: rotate(135deg);
+}
+
+/*3階層目を持つliの矢印の設定*/
+nav ul ul li.has-child::before{
+  content:'';
+  position: absolute;
+  left:6px;
+  top:17px;
+  width:6px;
+  height:6px;
+    border-top: 2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(45deg);
+}
+
+/*== 2・3階層目の共通設定 */
+
+/*下の階層を持っているulの指定*/
+nav li.has-child ul{
+    /*絶対配置で位置を指定*/
+  position: absolute;
+  left:0;
+  top:62px;
+  z-index: 4;
+    /*形状を指定*/
+  background:black;
+  width:180px;
+    /*はじめは非表示*/
+  visibility: hidden;
+  opacity: 0;
+    /*アニメーション設定*/
+  transition: all .3s;
+}
+
+/*hoverしたら表示*/
+nav li.has-child:hover > ul,
+nav li.has-child ul li:hover > ul,
+nav li.has-child:active > ul,
+nav li.has-child ul li:active > ul{
+  visibility: visible;
+  opacity: 1;
+}
+
+/*ナビゲーションaタグの形状*/
+nav li.has-child ul li a{
+  color: #fff;
+  border-bottom:solid 1px rgba(255,255,255,0.6);
+}
+
+nav li.has-child ul li:last-child a{
+  border-bottom:none;
+}
+
+nav li.has-child ul li a:hover,
+nav li.has-child ul li a:active{
+  background:black;
+}
+
+
+/*==3階層目*/
+
+/*3階層目の位置*/
+nav li.has-child ul ul{
+  top:0;
+  left:182px;
+  background:black;
+}
+
+nav li.has-child ul ul li a:hover,
+nav li.has-child ul ul li a:active{
+  background:black;
+}
+
+
+/*==768px以下の形状*/
+
+@media screen and (max-width:768px){
+  nav{
+    padding: 0;
+  }
+  
+  nav ul{
+    display: block;
+  }
+  
+  nav li.has-child ul,
+  nav li.has-child ul ul{
+    position: relative;
+  left:0;
+  top:0;
+  width:100%;
+  visibility:visible;/*JSで制御するため一旦表示*/
+  opacity:1;/*JSで制御するため一旦表示*/
+  display: none;/*JSのslidetoggleで表示させるため非表示に*/
+  transition:none;/*JSで制御するためCSSのアニメーションを切る*/
+}
+  
+nav ul li a{
+  border-bottom:1px solid #ccc;
+}
+
+/*矢印の位置と向き*/
+
+nav ul li.has-child::before{
+  left:20px;  
+}
+
+nav ul ul li.has-child::before{
+    transform: rotate(135deg);
+  left:20px;
+}
+    
+nav ul li.has-child.active::before{
+    transform: rotate(-45deg);
+}
+
+}
+
+/*========= レイアウトのためのCSS ===============*/
+
+h1{
+  font-size:2rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
+}
+
+h2{
+  font-size:1.2rem;
+  text-align: center;
+  margin: 0 0 30px 0;
+}
+
+p{
+  margin-top:20px;  
+}
+
+small{
+  background:#333;
+  color:#fff;
+  display: block;
+  text-align: center;
+  padding:20px;
+}
+
+
+section{
+  padding:30px;
+}
+
+section:nth-child(2n){
+  background:#f3f3f3; 
+} */
+
+.area-2_all{
+    width: 100%;
+    height: 100vh;
+}
+.news_back{
+    width: 60%;
+    height: 80vh;
+    margin: 0 auto;
+    background-color: #999;
+    border-radius: 10px;
+    overflow: scroll;
+}
+@media screen and (max-width:600px){
+    .news_back{
+        width: 90%;
+        height: 70vh;
+    }
+}
+.news_text{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    text-decoration: underline;
+}
+@media screen and (max-width:600px){
+    .news_text{
+        font-size: 15px;
+    }
+}
+.news_textbox{
+    margin: 5% 0;
+    border-bottom: 1px #333;
+}
+.news_in{
+    width: 80%;
+    margin: 0 auto;
+}
+/*フォントファミリーテンプレ
+font-family: 'Kiwi Maru', serif;
+font-family: 'Oswald', sans-serif;
+*/
+html{
+    font-family: 'Kiwi Maru', serif;
+    font-family: 'Oswald', sans-serif;
+}
+
+.section-pin {
+  background-color: #333;
+  padding: 20px;
+  height: 250vh;
+  overflow: visible;
+  view-timeline-name: --section-pin;
+  view-timeline-axis: block;
+}
+
+.section-sticky {
+  height: 100vh;
+  /* width: 100vw; */
+  position: sticky;
+  top: 0;
+  overflow-x: hidden;
+}
+
+.section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  height: 100%;
+  /* width: 400vmax; */
+  width: calc(var(--section-size) * var(--img-length) + 50px * (var(--img-length) + 1) + 72px);
+  /* width: auto; */
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+  animation: horizontalScroll linear both;
+  animation-timeline: --section-pin;
+  animation-range: contain 0% contain 100%;
+  color: #fff;
+  --img-length: 7;
+  --section-size: 80vh;
+}
+.box{
+  width: var(--section-size);
+  height: var(--section-size);
+  display: block;
+}
+.section h1 {
+  width: 32px;
+}
+
+@keyframes horizontalScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% + 100vw - 100px));
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .section h1 .box .section .section-sticky .section-pin {
+      /* スマートフォン表示時のスタイルを無効にするプロパティ */
+      display: none; /* 例: displayをnoneにする */
+  }
+}
+
+#container{
+  position: relative;
+}
+.main-logo{
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 100px;
+  height: 60px;
+}
+@media screen and (max-width:767px){
+  .main-logo{
+    width: 60px;
+    height: 35px;
+  }
+  
+}
+.news_text{
+  transition: 0.5s;
+}
+
+.news_text:hover{
+  color: green;
+  transition: 0.5s;
+}
+
+
+.top_img{
+  width: auto;
+  height: 30%;
+}
